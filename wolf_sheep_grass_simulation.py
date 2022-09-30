@@ -1,5 +1,8 @@
 import random
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 from actions.wolf_sheep_grass.die import Die
 from actions.wolf_sheep_grass.eat_grass import EatGrass
 from actions.wolf_sheep_grass.eat_sheep import EatSheep
@@ -9,10 +12,7 @@ from actions.wolf_sheep_grass.reproduce import Reproduce
 from agents.wolf_sheep_grass.grass import Grass
 from agents.wolf_sheep_grass.sheep import Sheep
 from agents.wolf_sheep_grass.wolf import Wolf
-import matplotlib.pyplot as plt
-import time
 from envs.cell import Cell
-import numpy as np
 from envs.env import Env
 
 NUM_OF_TIME_STEPS = 500
@@ -61,7 +61,7 @@ for y in range(ENV_NUMBER_OF_ROWS):
         cells_row.append(cell)
         # With probability of GREEN_GRASS_RATE the grass in this cell is green
         grass_green = random.random() > GREEN_GRASS_RATE
-        grass = grass = Grass(x, y, grass_regrowth_time, grass_green, grass_actions)
+        grass = Grass(x, y, grass_regrowth_time, grass_green, grass_actions)
         cell.add_agent(grass)
         env_grass.append(grass)
     env_cells.append(cells_row)
