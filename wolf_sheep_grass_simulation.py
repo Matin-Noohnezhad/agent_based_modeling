@@ -88,8 +88,8 @@ for wolves_position in wolves_positions:
 def count_each_agent(agents):
     sheep_count = sum(map(lambda agent: isinstance(agent, Sheep), agents))
     wolf_count = sum(map(lambda agent: isinstance(agent, Wolf), agents))
-    grass_count = sum(map(lambda agent: isinstance(agent, Grass), agents))
-    return sheep_count, wolf_count, grass_count
+    green_grass_count = sum(map(lambda agent: (isinstance(agent, Grass) and agent.green), agents))
+    return sheep_count, wolf_count, green_grass_count
 
 
 def plot_number_of_agents(sheep_count_hist, wolf_count_hist, grass_count_hist):
@@ -111,8 +111,8 @@ for i in range(NUM_OF_TIME_STEPS):
     # sheep-wolves-grass problem is asynchronous
     env.step(synchronous=False)
     #
-    sheep_count, wolf_count, grass_count = count_each_agent(env.agents)
+    sheep_count, wolf_count, green_grass_count = count_each_agent(env.agents)
     sheep_count_history.append(sheep_count)
     wolf_count_history.append(wolf_count)
-    grass_count_history.append(grass_count/4)
+    grass_count_history.append(green_grass_count / 4)
     plot_number_of_agents(sheep_count_history, wolf_count_history, grass_count_history)
