@@ -1,6 +1,5 @@
 import random
 
-import matplotlib.pyplot as plt
 import numpy as np
 
 from actions.wolf_sheep_grass.die import Die
@@ -14,6 +13,7 @@ from agents.wolf_sheep_grass.sheep import Sheep
 from agents.wolf_sheep_grass.wolf import Wolf
 from envs.cell import Cell
 from envs.env import Env
+from utils import count_each_agent, plot_number_of_agents
 
 NUM_OF_TIME_STEPS = 500
 
@@ -82,27 +82,6 @@ for wolves_position in wolves_positions:
     wolf = Wolf(wolves_position[0], wolves_position[1], wolf_start_energy, wolf_reproduction_rate, wolf_gain_from_food,
                 wolf_lose_from_walk, wolf_actions)
     env.add_agent(wolf)
-
-
-#
-def count_each_agent(agents):
-    sheep_count = sum(map(lambda agent: isinstance(agent, Sheep), agents))
-    wolf_count = sum(map(lambda agent: isinstance(agent, Wolf), agents))
-    green_grass_count = sum(map(lambda agent: (isinstance(agent, Grass) and agent.green), agents))
-    return sheep_count, wolf_count, green_grass_count
-
-
-def plot_number_of_agents(sheep_count_hist, wolf_count_hist, grass_count_hist):
-    plt.xlabel('step')
-    step_hist = range(1, len(sheep_count_hist) + 1)
-    plt.clf()
-    plt.plot(step_hist, sheep_count_hist, color='r', label='sheep')
-    plt.plot(step_hist, wolf_count_hist, color='b', label='wolf')
-    plt.plot(step_hist, grass_count_hist, 'g', label='grass')
-    plt.draw()
-    plt.legend(loc='upper right')
-    plt.pause(0.0001)
-
 
 sheep_count_history = []
 wolf_count_history = []
