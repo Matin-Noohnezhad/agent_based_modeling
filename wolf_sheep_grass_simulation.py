@@ -1,5 +1,8 @@
 import random
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 from actions.wolf_sheep_grass.die import Die
 from actions.wolf_sheep_grass.eat_grass import EatGrass
 from actions.wolf_sheep_grass.eat_sheep import EatSheep
@@ -9,10 +12,7 @@ from actions.wolf_sheep_grass.reproduce import Reproduce
 from agents.wolf_sheep_grass.grass import Grass
 from agents.wolf_sheep_grass.sheep import Sheep
 from agents.wolf_sheep_grass.wolf import Wolf
-import matplotlib.pyplot as plt
-import time
 from envs.cell import Cell
-import numpy as np
 from envs.env import Env
 
 NUM_OF_TIME_STEPS = 500
@@ -61,7 +61,7 @@ for y in range(ENV_NUMBER_OF_ROWS):
         cells_row.append(cell)
         # With probability of GREEN_GRASS_RATE the grass in this cell is green
         grass_green = random.random() > GREEN_GRASS_RATE
-        grass = grass = Grass(x, y, grass_regrowth_time, grass_green, grass_actions)
+        grass = Grass(x, y, grass_regrowth_time, grass_green, grass_actions)
         cell.add_agent(grass)
         env_grass.append(grass)
     env_cells.append(cells_row)
@@ -88,8 +88,8 @@ for wolves_position in wolves_positions:
 def count_each_agent(agents):
     sheep_count = sum(map(lambda agent: isinstance(agent, Sheep), agents))
     wolf_count = sum(map(lambda agent: isinstance(agent, Wolf), agents))
-    grass_count = sum(map(lambda agent: isinstance(agent, Grass), agents))
-    return sheep_count, wolf_count, grass_count
+    green_grass_count = sum(map(lambda agent: (isinstance(agent, Grass) and agent.green), agents))
+    return sheep_count, wolf_count, green_grass_count
 
 
 def plot_number_of_agents(sheep_count_hist, wolf_count_hist, grass_count_hist):
@@ -111,8 +111,10 @@ for i in range(NUM_OF_TIME_STEPS):
     # sheep-wolves-grass problem is asynchronous
     env.step(synchronous=False)
     #
-    sheep_count, wolf_count, grass_count = count_each_agent(env.agents)
+    sheep_count, wolf_count, green_grass_count = count_each_agent(env.agents)
+    print('sheep-wolf-green_grass')
+    print(sheep_count, '-', wolf_count, '-', green_grass_count)
     sheep_count_history.append(sheep_count)
     wolf_count_history.append(wolf_count)
-    grass_count_history.append(grass_count/4)
+    grass_count_history.append(green_grass_count / 4)
     plot_number_of_agents(sheep_count_history, wolf_count_history, grass_count_history)
