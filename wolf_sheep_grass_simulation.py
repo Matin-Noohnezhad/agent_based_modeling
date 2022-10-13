@@ -112,6 +112,8 @@ for i in range(NUM_OF_TIME_STEPS):
     env.step(synchronous=False)
     #
     sheep_count, wolf_count, green_grass_count = count_each_agent(env.agents)
+    print('sheep-wolf-green_grass')
+    print(sheep_count, '-', wolf_count, '-', green_grass_count)
     sheep_count_history.append(sheep_count)
     wolf_count_history.append(wolf_count)
     grass_count_history.append(green_grass_count / 4)

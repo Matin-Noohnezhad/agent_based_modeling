@@ -13,4 +13,5 @@ class EatGrass(Action):
                     # sheep eats the grass
                     sheep.energy += sheep.gain_from_food
                     grass.green = False
+                    grass.time_to_grow = grass.regrowth_time
                 break
