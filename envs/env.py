@@ -16,16 +16,23 @@ class Env:
         self.cells[agent.x][agent.y].remove_agent(agent)
 
     def step(self, synchronous):
-        if synchronous:  # synchronous update
-            # perceive step
-            for agent in self.agents:
-                agent.perceive(self)
-            # actions step
-            for agent in self.agents:
-                agent.action(self)
-        else:  # asynchronous update
-            # shuffle the agents so there is no priority for action of any agent against the other agents action
-            random.shuffle(self.agents)
-            for agent in self.agents:
-                # perceive and action in the same step for each agent
-                agent.action(self)
+        if synchronous:
+            self.__perceive_step()
+            self.__actions_step()
+        else:
+            self.__perceive_action_step()
+
+    def __perceive_step(self):
+        for agent in self.agents:
+            agent.perceive(self)
+
+    def __actions_step(self):
+        for agent in self.agents:
+            agent.act(self)
+
+    def __perceive_action_step(self):
+        # shuffle the agents so there is no priority for action of any agent against the other agents action
+        random.shuffle(self.agents)
+        for agent in self.agents:
+            agent.perceive(self)
+            agent.act(self)

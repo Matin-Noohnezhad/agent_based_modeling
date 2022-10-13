@@ -14,6 +14,6 @@ class Wolf(Agent):
     def perceive(self, env):
         pass
 
-    def action(self, env):
+    def act(self, env):
         for action in self.actions:
             action.act(self, env)

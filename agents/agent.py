@@ -14,5 +14,5 @@ class Agent:
         raise NotImplemented
 
     @abc.abstractmethod
-    def action(self, env):
+    def act(self, env):
         raise NotImplemented

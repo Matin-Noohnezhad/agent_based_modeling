@@ -1,5 +1,7 @@
+from random import randint
+
 from agents.agent import Agent
-from random import  randint
+
 
 class Grass(Agent):
 
@@ -13,6 +15,6 @@ class Grass(Agent):
     def perceive(self, env):
         pass
 
-    def action(self, env):
+    def act(self, env):
         for action in self.actions:
             action.act(self, env)
