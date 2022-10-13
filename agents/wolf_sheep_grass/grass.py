@@ -1,5 +1,5 @@
 from agents.agent import Agent
-
+from random import  randint
 
 class Grass(Agent):
 
@@ -7,7 +7,7 @@ class Grass(Agent):
         super().__init__(x, y)
         self.regrowth_time = regrowth_time
         self.green = green
-        self.time_to_grow = regrowth_time
+        self.time_to_grow = randint(0, regrowth_time)
         self.actions = actions
 
     def perceive(self, env):
