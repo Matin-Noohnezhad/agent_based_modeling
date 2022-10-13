@@ -55,7 +55,6 @@ class WolfSheepGrassSimulation(Simulation):
             for x in range(cfg.ENV_NUMBER_OF_COLS):
                 cell = Cell()
                 cells_row.append(cell)
-                # With probability of GREEN_GRASS_RATE the grass in this cell is green
                 grass_green = random.random() > cfg.GREEN_GRASS_RATE
                 grass = Grass(x, y, cfg.GRASS_REGROWTH_TIME, grass_green, self.grass_actions)
                 cell.add_agent(grass)
