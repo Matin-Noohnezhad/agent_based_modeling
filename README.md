@@ -1,4 +1,4 @@
-# agent_based_modeling
+# Agent-Based Modeling 
 
 ### In order to run the simulation use following command:
 
