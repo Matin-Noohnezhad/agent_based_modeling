@@ -88,7 +88,7 @@ class WolfSheepGrassSimulation(Simulation):
         for i in range(num_of_time_steps):
             # Note: sheep-wolves-grass problem is asynchronous
             self.env.step(synchronous=False)
-            #
+            # plotting
             sheep_count, wolf_count, green_grass_count = self.__count_each_agent()
             print('sheep-wolf-green_grass')
             print(sheep_count, '-', wolf_count, '-', green_grass_count)

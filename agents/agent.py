@@ -1,18 +1,13 @@
-import abc
-
-
 class Agent:
-    __metaclass__ = abc.ABCMeta
 
-    @abc.abstractmethod
-    def __init__(self, x, y):
+    def __init__(self, x, y, actions):
+        self.actions = actions
         self.x = x
         self.y = y
 
-    @abc.abstractmethod
     def perceive(self, env):
-        raise NotImplemented
+        pass
 
-    @abc.abstractmethod
     def act(self, env):
-        raise NotImplemented
+        for action in self.actions:
+            action.act(self, env)
