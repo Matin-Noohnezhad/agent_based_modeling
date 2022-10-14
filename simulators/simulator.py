@@ -1,7 +1,7 @@
 import abc
 
 
-class Simulation:
+class Simulator:
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod

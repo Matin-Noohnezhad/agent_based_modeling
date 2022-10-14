@@ -15,11 +15,11 @@ from agents.wolf_sheep_grass.sheep import Sheep
 from agents.wolf_sheep_grass.wolf import Wolf
 from envs.cell import Cell
 from envs.env import Env
-from simulations.simulation import Simulation
+from simulators.simulator import Simulator
 from . import config as cfg
 
 
-class WolfSheepGrassSimulation(Simulation):
+class WolfSheepGrassSimulator(Simulator):
 
     def __init__(self):
         self.grass_actions: list[Action] = None
