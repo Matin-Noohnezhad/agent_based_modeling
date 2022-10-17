@@ -50,16 +50,16 @@ class WolfSheepGrassSimulator(Simulator):
     def create_env_cells_grasses(self):
         env_cells = []
         env_grass = []
-        for y in range(cfg.ENV_NUMBER_OF_ROWS):
-            cells_row = []
-            for x in range(cfg.ENV_NUMBER_OF_COLS):
+        for x in range(cfg.ENV_NUMBER_OF_COLS):
+            cells_col = []
+            for y in range(cfg.ENV_NUMBER_OF_ROWS):
                 cell = Cell()
-                cells_row.append(cell)
+                cells_col.append(cell)
                 grass_green = random.random() > cfg.GREEN_GRASS_RATE
                 grass = Grass(x, y, cfg.GRASS_REGROWTH_TIME, grass_green, self.grass_actions)
                 cell.add_agent(grass)
                 env_grass.append(grass)
-            env_cells.append(cells_row)
+            env_cells.append(cells_col)
         self.env = Env(env_grass, env_cells)
 
     def create_sheep(self):

@@ -10,3 +10,6 @@ class Wolf(Agent):
         self.gain_from_food = gain_from_food
         self.lose_from_walk = lose_from_walk
         self.actions = actions
+
+    def decrease_energy_from_walk(self):
+        self.energy -= self.lose_from_walk
