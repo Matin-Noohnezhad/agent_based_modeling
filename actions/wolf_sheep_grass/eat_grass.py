@@ -8,10 +8,12 @@ class EatGrass(Action):
         cell = env.cells[sheep.x][sheep.y]
         for grass_candidate in cell.agents:
             if isinstance(grass_candidate, Grass):
-                grass = grass_candidate
-                if grass.green:
-                    # sheep eats the grass
-                    sheep.energy += sheep.gain_from_food
-                    grass.green = False
-                    grass.time_to_grow = grass.regrowth_time
+                self.sheep_eat_grass(sheep, grass_candidate)
                 break
+
+    @staticmethod
+    def sheep_eat_grass(sheep, grass):
+        if grass.green:
+            sheep.energy += sheep.gain_from_food
+            grass.green = False
+            grass.time_to_grow = grass.regrowth_time

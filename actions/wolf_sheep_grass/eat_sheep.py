@@ -8,8 +8,10 @@ class EatSheep(Action):
         cell = env.cells[wolf.x][wolf.y]
         for sheep_candidate in cell.agents:
             if isinstance(sheep_candidate, Sheep):
-                sheep = sheep_candidate
-                # wolf eats the sheep
-                wolf.energy += wolf.gain_from_food
-                env.remove_agent(sheep)
+                self.wolf_eat_sheep(wolf, sheep_candidate, env)
                 break
+
+    @staticmethod
+    def wolf_eat_sheep(wolf, sheep, env):
+        wolf.energy += wolf.gain_from_food
+        env.remove_agent(sheep)
